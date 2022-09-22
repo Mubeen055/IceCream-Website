@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="578496b35b854ec9b48180015a7ae543" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="ecommerce_AUHModel.Category" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerce_AUHModel.Order" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerce_AUHModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ecommerce_AUHModel.User" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="ecommerce_AUHModel.FK__Products__Catego__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ecommerce_AUHModel.FK__Orders__User_ID__2F10007B" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ecommerce_AUHModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.375" />
+        <EntityTypeShape EntityType="ecommerce_AUHModel.Order_Details" Width="1.5" PointX="5.25" PointY="1.375" />
+        <AssociationConnector Association="ecommerce_AUHModel.FK__Order_Det__Order__2C3393D0" />
+        <AssociationConnector Association="ecommerce_AUHModel.FK__Order_Det__Produ__2D27B809" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

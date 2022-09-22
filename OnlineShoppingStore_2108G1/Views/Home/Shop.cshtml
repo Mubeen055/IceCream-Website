@@ -1,0 +1,162 @@
+﻿@model OnlineShoppingStore_2108G1.Models.Products_WithFilter 
+@using PagedList.Mvc 
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+<style>
+    .pagination {
+    }
+
+        .pagination a {
+            font-size: 14px;
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+            .pagination a:hover {
+                background-color: lightblue;
+            }
+</style>
+<main class="main">
+    <div class="page-header"
+         style="background-image: url('images/shop/page-header-back.jpg'); background-color: #3C63A4;">
+        <h1 class="page-title">Shop</h1>
+
+
+        <ul class="breadcrumb">
+            <li><a href="/Home/Index"><i class="d-icon-home"></i></a></li>
+            <li class="delimiter">/</li>
+            <li>Shop</li>
+        </ul>
+    </div>
+    <!-- End PageHeader -->
+    <div class="page-content mb-10 pb-6">
+        <div class="container">
+            <div class="row gutter-lg main-content-wrap">
+                <aside class="col-lg-3 sidebar sidebar-fixed sidebar-toggle-remain shop-sidebar sticky-sidebar-wrapper">
+                    <div class="sidebar-overlay"></div>
+                    <a class="sidebar-close" href="#"><i class="d-icon-times"></i></a>
+                    @using (Html.BeginForm("shop", "Home", FormMethod.Post))
+                    {
+                    <div class="sidebar-content">
+                        <div class="sticky-sidebar" data-sticky-options="{'top': 10}">
+                            <div class="filter-actions mb-4">
+                                <a href="#"
+                                   class="sidebar-toggle-btn toggle-remain btn btn-outline btn-primary btn-icon-right">
+                                    Filter<i class="d-icon-arrow-left"></i>
+                                </a>
+
+                            </div>
+
+                            <div class="widget widget-collapsible">
+                                <h3 class="widget-title">All Categories</h3>
+                                <ul class="widget-body filter-items">
+                                    @Html.DropDownList("CategoriesList", null, "---Select Category---", htmlAttributes: new { @class = "Form-Control" })
+                                </ul>
+                            </div>
+                            <div class="widget widget-collapsible">
+                                <h3 class="widget-title">Filter by Price</h3>
+                                <div class="widget-body">
+
+                                    <div class="filter-actions" style="margin-top:-10px;">
+
+                                        <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <input type="number" style="width:80%;" min=0 max="9900" oninput="validity.valid||(value='0');" id="min_price" name="min_price" class="price-range-field" readonly />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input type="number" style="width:80%;" min=0 max="10000" oninput="validity.valid||(value='10000');" id="max_price" name="max_price" class="price-range-field" readonly />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <button type="submit"
+                                    class="btn btn-dark btn-filter">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                    }
+                </aside>
+                <div class="col-lg-9 main-content">
+                    <nav class="toolbox sticky-toolbox sticky-content fix-top">
+                        <div class="toolbox-left">
+                            <a href="#"
+                               class="toolbox-item left-sidebar-toggle btn btn-sm btn-outline btn-primary btn-icon-right d-lg-none">
+                                Filter<i class="d-icon-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </nav>
+                    <div class="product-lists product-wrapper">
+
+
+                        <!-- START OF PRODUCTS -->
+                        @foreach (var item in Model.ProductList)
+                        {
+                            <div class="product product-list">
+                                <figure class="product-media">
+                                    <a href="#">
+                                        <img src="@item.Picture" alt="product" width="260" height="293">
+                                    </a>
+                                    <div class="product-label-group">
+                                        <label class="product-label label-new">new</label>
+                                    </div>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="product-cat">
+                                        <a href="#">@item.Category.Category_Name</a>
+                                    </div>
+                                    <h3 class="product-name">
+                                        <a href="#">@item.Name</a>
+                                    </h3>
+                                    <div class="product-price">
+                                        <span class="price">$@item.Price</span>
+                                    </div>
+
+                                    <p class="product-short-desc">
+                                        @item.ShortDescription
+                                    </p>
+                                    <div class="product-action">
+                                        <a href="#" class="btn-cart" data-toggle="modal"
+                                           data-target="#addCartModal" title="Add to cart">
+                                            <i class="d-icon-bag"></i><label>Add to cart</label>
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- END OF PRODUCTS -->
+
+
+
+
+
+
+                    </div>
+                    <nav class="toolbox toolbox-pagination mt-6">
+                        <p class="show-info">Page @(Model.ProductList.PageCount < Model.ProductList.PageNumber ? 0 : Model.ProductList.PageNumber) of @Model.ProductList.PageCount </p>
+                        <ul class="pagination">
+                            <li class="pagination page-item active" aria-current="page" style="margin-left: 400px">
+                                <a href="#">  @Html.PagedListPager(Model.ProductList, page => Url.Action("Shop", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))  </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

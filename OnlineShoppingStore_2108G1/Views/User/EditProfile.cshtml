@@ -1,0 +1,154 @@
+﻿@model OnlineShoppingStore_2108G1.Models.User
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+@Html.Raw(TempData["ProfileUpdateSuccess"])
+
+<main class="main">
+    <nav class="breadcrumb-nav">
+        <div class="container">
+            @*<ul class="breadcrumb">
+                    <li><a href="#"><i class="d-icon-home"></i></a></li>
+                    <li>Register</li>
+                </ul>*@
+        </div>
+    </nav>
+    <div class="page-content mt-6 pb-2 mb-10">
+        <div class="container">
+            <div class="login-popup">
+                <div class="form-box">
+                    <div class="tab tab-nav-simple tab-nav-boxed form-tab">
+                        <ul class="nav nav-tabs nav-fill align-items-center border-no justify-content-center mb-5" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active border-no lh-1 ls-normal" href="#register">UpdateProfile</a>
+                            </li>
+
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="register">
+
+
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.HiddenFor(x => x.User_ID)
+
+                                    <div class="form-group">
+
+                                        @Html.ValidationMessage("EmailExists", "", new { style = "font-size: 12px; color:red; font-weight:bold;" })
+                                        @Html.ValidationMessage("PasswordNotSame", "", new { style = "font-size: 12px; color:red; font-weight:bold;" })
+
+                                        @Html.EditorFor(m => m.Name, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "text",
+                                                @class = "form-control",
+                                                placeholder = "Your Name *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.City, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "text",
+                                                @class = "form-control",
+                                                placeholder = "Your City *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.Address, new
+                                        {
+                                            htmlAttributes = new
+                                        {
+                                                type = "text",
+                                                @class = "form-control",
+                                                placeholder = "Your Address *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.Email, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "email",
+                                                @class = "form-control",
+                                                placeholder = "Your Email*",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.Password, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "password",
+                                                @class = "form-control",
+                                                placeholder = "Your Password *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.ConfirmPassword, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "password",
+                                                @class = "form-control",
+                                                placeholder = "Confirm Your Password *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(m => m.Contact_Number, new
+                                        {
+                                            htmlAttributes = new
+                                            {
+                                                type = "text",
+                                                @class = "form-control",
+                                                placeholder = "Your Contact *",
+                                                required = "required"
+                                            }
+                                        })
+                                    </div>
+
+                                    <button class="btn btn-dark btn-block btn-rounded" type="submit">Update</button>
+
+
+                                }
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
